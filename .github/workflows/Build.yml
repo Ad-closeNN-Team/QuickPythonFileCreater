@@ -37,7 +37,7 @@ jobs:
       - name: Set-up
         run: |
             pip install pyinstaller
-            python ".github/Build.py"
+            python "Get-upx.py"
             content=(type url)
             echo "CONTENT=$content" >> $GITHUB_ENV
             curl -L -o upx.zip "$CONTENT"
