@@ -42,6 +42,7 @@ jobs:
             set /p content=<url
             echo CONTENT=%content% >> %GITHUB_ENV%
             curl -L -o upx.zip %content%
+            mkdir upx
             tar -xf "upx.zip" -C upx --strip-components=1
       - name: Build with pyinstaller
         run: |
