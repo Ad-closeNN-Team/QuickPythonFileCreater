@@ -53,4 +53,4 @@ jobs:
         with:
           name: Python - Quick Python File Creater
           path: |
-            Quick Python File Creater.exe
+            dist/Quick Python File Creater.exe
