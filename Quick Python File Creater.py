@@ -1,20 +1,16 @@
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 import os
-
 def get_time():
     global file_name
-    utc_plus_8 = datetime.now(timezone(timedelta(hours=8)))  # 设置时区偏移为 UTC+8
+    utc_plus_8 = datetime.now()
     file_name = utc_plus_8.strftime("%Y-%m-%d_%H-%M-%S")
-
 def get_dir_path():
     global temp_path
     temp_path = os.getenv("TEMP")
-
 def create_test_file():
-    with open(temp_path + "\\" + file_name + ".py", "w", encoding="utf-8") as test_file:
+    with open(temp_path+"\\"+file_name+".py", "w", encoding="utf-8") as test_file:
         test_file.write("")
-    os.startfile(temp_path + "\\" + file_name + ".py")
-
+    os.startfile(temp_path+"\\"+file_name+".py")
 if __name__ == "__main__":
     os.system("cls")
     get_time()
