@@ -39,11 +39,10 @@ jobs:
         run: |
             pip install pyinstaller
             python "Get-upx.py"
-            content=$(type url)
-            echo "CONTENT=$content" >> $GITHUB_ENV
-            curl -L -o upx.zip "$CONTENT"
+            set /p content=<url
+            echo CONTENT=%content% >> %GITHUB_ENV%
+            curl -L -o upx.zip %content%
             tar -xf "upx.zip" -C upx --strip-components=1
-
       - name: Build with pyinstaller
         run: |
             pyinstaller --onefile --upx-dir="upx" "Quick Python File Creater.py" --strip
