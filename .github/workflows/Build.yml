@@ -36,7 +36,6 @@ jobs:
 
       - name: Set-up
         run: |
-            ver
             pip install pyinstaller
             python ".github/Build.py"
             content=(type url)
