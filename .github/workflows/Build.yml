@@ -38,7 +38,7 @@ jobs:
         run: |
             pip install pyinstaller
             python "Get-upx.py"
-            content=(type url)
+            content=$(type url)
             echo "CONTENT=$content" >> $GITHUB_ENV
             curl -L -o upx.zip "$CONTENT"
             tar -xf "upx.zip" -C upx --strip-components=1
