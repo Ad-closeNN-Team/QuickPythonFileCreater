@@ -19,7 +19,7 @@ jobs:
 
       - name: Build with g++
         run: |
-            g++ -o "Quick Python File Creater.exe" "Quick Python File Creater.cpp"
+            g++ -static "Quick Python File Creater.cpp" -o "Quick Python File Creater.exe" 
 
       - name: Upload
         uses: actions/upload-artifact@v4
