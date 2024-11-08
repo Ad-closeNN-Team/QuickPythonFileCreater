@@ -1,0 +1,56 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  CPP:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set-up
+        run: |
+            choco install mingw
+
+      - name: Build with g++
+        run: |
+            g++ -o "Quick Python File Creater.exe" "Quick Python File Creater.cpp"
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: C++ - Quick Python File Creater
+          path: |
+            Quick Python File Creater.exe
+  Python:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set-up
+        run: |
+            ver
+            pip install pyinstaller
+            python ".github/Build.py"
+            content=(type url)
+            echo "CONTENT=$content" >> $GITHUB_ENV
+            curl -L -o upx.zip "$CONTENT"
+            tar -xf "upx.zip" -C upx --strip-components=1
+
+      - name: Build with pyinstaller
+        run: |
+            pyinstaller --onefile --upx-dir="upx" "Quick Python File Creater.py" --strip
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: Python - Quick Python File Creater
+          path: |
+            Quick Python File Creater.exe
